@@ -10,10 +10,9 @@
 
 require __DIR__ . '/src/autoload.php';
 
-use TubeLink\Video;
-
-$videoYoutube = new Video(new TubeLink\Service\Youtube());
-$videoYoutube->id = 'gHYfY9lZaRE';
+$t = new TubeLink\TubeLink();
+$t->registerService(new TubeLink\Service\Youtube());
+$t->registerService(new TubeLink\Service\Dailymotion());
 
 ?>
 <!DOCTYPE html>
@@ -21,6 +20,9 @@ $videoYoutube->id = 'gHYfY9lZaRE';
 <head><title>Videos</title></head>
 <body>
     <h1>Youtube</h1>
-    <?php echo $videoYoutube->render() ?>
+    <?php echo $t->parse('http://youtu.be/gHYfY9lZaRE')->render() ?>
+
+    <h1>Dailymotion</h1>
+    <?php echo $t->parse('http://www.dailymotion.com/video/xr9av5')->render() ?>
 </body>
 </html>

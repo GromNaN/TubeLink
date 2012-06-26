@@ -10,8 +10,8 @@ For each video-sharing website of the following list, a _Service_ class can iden
 a supported URL and extract the video ID.
 
 * [Youtube](http://www.youtube.com/)
+* [Dailymotion](http://www.dailymotion.com/)
 * ... more to come
-
 
 Installation
 ============
@@ -66,5 +66,4 @@ $video = $parser->parse($url);
 // Shows the embedded video HTML
 echo $video->render();
 ```
-
 
