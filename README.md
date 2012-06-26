@@ -53,8 +53,6 @@ You're done.
 Usage
 =====
 
-
-
 ``` php
 use TubeLink\TubeLink;
 
@@ -68,3 +66,5 @@ $video = $parser->parse($url);
 // Shows the embedded video HTML
 echo $video->render();
 ```
+
+

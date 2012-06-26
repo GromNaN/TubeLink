@@ -31,7 +31,7 @@ class Youtube implements ServiceInterface
             && preg_match('#^\w{11}$#', $query['v'])
         ) {
             $id = $query['v'];
-        } else if (false !== strpos($data['host'], 'youtu.be')
+        } elseif (false !== strpos($data['host'], 'youtu.be')
             && preg_match('#^/?\w{11}/?$#', $data['path'])
         ) {
             $id = trim($data['path'], '/');

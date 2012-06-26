@@ -20,7 +20,7 @@ interface TubeLinkInterface
     /**
      * Parse a video URL and find its hosting service.
      *
-     * @param  string $url Video URL
+     * @param string $url Video URL
      *
      * @return Video
      *

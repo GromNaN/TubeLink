@@ -39,12 +39,10 @@ class TubeLink implements TubeLinkInterface
      */
     public function parse($url)
     {
-        foreach ($this->services as $service)
-        {
+        foreach ($this->services as $service) {
             $video = $service->parse($url);
 
-            if (false !== $video)
-            {
+            if (false !== $video) {
                 return $video;
             }
         }
