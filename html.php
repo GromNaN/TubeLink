@@ -13,6 +13,7 @@ require __DIR__ . '/src/autoload.php';
 $t = new TubeLink\TubeLink();
 $t->registerService(new TubeLink\Service\Youtube());
 $t->registerService(new TubeLink\Service\Dailymotion());
+$t->registerService(new TubeLink\Service\Vimeo());
 
 ?>
 <!DOCTYPE html>
@@ -24,5 +25,8 @@ $t->registerService(new TubeLink\Service\Dailymotion());
 
     <h1>Dailymotion</h1>
     <?php echo $t->parse('http://www.dailymotion.com/video/xr9av5')->render() ?>
+
+    <h1>Vimeo</h1>
+    <?php echo $t->parse('http://vimeo.com/15247292')->render() ?>
 </body>
 </html>

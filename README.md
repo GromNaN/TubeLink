@@ -11,6 +11,7 @@ a supported URL and extract the video ID.
 
 * [Youtube](http://www.youtube.com/)
 * [Dailymotion](http://www.dailymotion.com/)
+* [Vimeo](http://www.vimeo.com/)
 * ... more to come
 
 Installation

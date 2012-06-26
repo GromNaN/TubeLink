@@ -10,27 +10,28 @@
 
 namespace TubeLink\Tests\Service;
 
-use TubeLink\Service\Dailymotion;
+use TubeLink\Service\Vimeo;
 
-class DailymotionTest extends ServiceTestCase
+class VimeoTest extends ServiceTestCase
 {
     public function dataForTestParse()
     {
         return array(
-            array('http://www.dailymotion.com/video/xrme0d_la-seance-du-mardi-ep22-un-bonheur-n-arrive-jamais-seul_shortfilms', 'xrme0d'),
-            array('http://www.dailymotion.com/video/xr9av5', 'xr9av5'),
+            array('http://vimeo.com/15247292', '15247292'),
+            array('http://player.vimeo.com/video/15247292?title=0&amp;byline=0&amp;portrait=0&amp;color=bababa', '15247292'),
         );
     }
 
     public function dataForTestParseFalse()
     {
         return array(
-            array('http://www.dailymotion.com/video/_'),
+            array('http://vimeo.com/explore'),
         );
     }
 
     protected function getService()
     {
-        return new Dailymotion();
+        return new Vimeo();
     }
 }
+
