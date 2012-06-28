@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Tubelink by GromNaN</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Tubelink</h1>
+        <p class="header">Extract video information from any URL and render HTML</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/GromNaN/TubeLink/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/GromNaN/TubeLink/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/GromNaN/TubeLink">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/GromNaN">GromNaN</a></p>
+
+
+      </header>
+      <section>
+        <h1>TubeLink - Parse any video URL</h1>
+
+<p><strong>TubeLink</strong> is a PHP library to extract video information from any URL.</p>
+
+<h2>Supported Services</h2>
+
+<p>For each video-sharing website of the following list, a <em>Service</em> class can identify
+a supported URL and extract the video ID.</p>
+
+<ul>
+<li><a href="http://www.youtube.com/">Youtube</a></li>
+<li><a href="http://www.dailymotion.com/">Dailymotion</a></li>
+<li><a href="http://www.vimeo.com/">Vimeo</a></li>
+<li>... more to come</li>
+</ul><h1>Installation</h1>
+
+<p>The recommended way to install TubeLink is through composer.</p>
+
+<p>Just create a <code>composer.json</code> file for your project:</p>
+
+<div class="highlight">
+<pre><span class="p">{</span>
+    <span class="nt">"require"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"grom/tube-link"</span><span class="p">:</span> <span class="s2">"dev-master"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>And run these two commands to install it:</p>
+
+<div class="highlight">
+<pre><span class="nv">$ </span>wget http://getcomposer.org/composer.phar
+<span class="nv">$ </span>php composer.phar install
+</pre>
+</div>
+
+
+<p>Now you can add the autoloader, and you will have access to the library:</p>
+
+<div class="highlight">
+<pre><span class="x">require 'vendor/autoload.php';</span>
+</pre>
+</div>
+
+
+<p>If you don't use neither <strong>Composer</strong> nor a <em>ClassLoader</em> in your application, just require the provided autoloader:</p>
+
+<div class="highlight">
+<pre><span class="x">require_once 'src/autoload.php';</span>
+</pre>
+</div>
+
+
+<p>You're done.</p>
+
+<h1>Usage</h1>
+
+<div class="highlight">
+<pre><span class="x">use TubeLink\TubeLink;</span>
+
+<span class="x">$url = 'http://youtu.be/kffacxfA7G4';</span>
+
+<span class="x">$parser = new TubeLink();</span>
+<span class="x">$parser-&gt;registerService(new TubeLink\Service\Youtube());</span>
+
+<span class="x">$video = $parser-&gt;parse($url);</span>
+
+<span class="x">// Shows the embedded video HTML</span>
+<span class="x">echo $video-&gt;render();</span>
+</pre>
+</div>
+
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+		
+  </body>
+</html>
