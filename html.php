@@ -22,6 +22,7 @@ $t->registerService(new TubeLink\Service\Vimeo());
 <body>
     <h1>Youtube</h1>
     <?php echo $t->parse('http://youtu.be/gHYfY9lZaRE')->render() ?>
+    <?php echo $t->parse('http://www.youtube.com/embed/gHYfY9lZaRE')->render() ?>
 
     <h1>Dailymotion</h1>
     <?php echo $t->parse('http://www.dailymotion.com/video/xr9av5')->render() ?>

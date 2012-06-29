@@ -14,7 +14,7 @@
  *
  * @author Jérôme Tamarelle <jerome@tamarelle.net>
  */
-spl_autoload_register(function($className) {
+function autoload_tubelink($className) {
     $className = ltrim($className, '\\');
     if (0 === strpos($className, 'TubeLink')) {
         $fileName = __DIR__ . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
@@ -26,4 +26,6 @@ spl_autoload_register(function($className) {
     }
 
     return false;
-});
+};
+
+spl_autoload_register('autoload_tubelink');
