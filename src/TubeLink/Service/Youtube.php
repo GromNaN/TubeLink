@@ -35,6 +35,10 @@ class Youtube implements ServiceInterface
             && preg_match('#^/?\w{11}/?$#', $data['path'])
         ) {
             $id = trim($data['path'], '/');
+        } elseif (false !== strpos($data['host'], 'youtube.com')
+            && preg_match('{^/embed/(\w{11})}', $data['path'], $matches)
+        ) {
+            $id = $matches[1];
         } else {
             return false;
         }
