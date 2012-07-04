@@ -38,13 +38,9 @@ class Vimeo implements ServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function html(Video $video)
+    public function generateEmbedUrl(Video $video)
     {
-        $html = <<<HTML
-<iframe src="http://player.vimeo.com/video/{id}?title=0&amp;byline=0&amp;portrait=0&amp;color=bababa" width="560" height="420" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-HTML;
-
-        return str_replace('{id}', $video->id, $html);
+        return sprintf('http://player.vimeo.com/video/%s', $video->id);
     }
 
     /**

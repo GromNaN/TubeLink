@@ -10,6 +10,8 @@
 
 namespace TubeLink\Tests\Service;
 
+use TubeLink\Video;
+
 abstract class ServiceTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -33,9 +35,23 @@ abstract class ServiceTestCase extends \PHPUnit_Framework_TestCase
         $this->assertSame(false, $video);
     }
 
+    /**
+     * @dataProvider dataForTestGenerateEmbedUrl
+     */
+    public function testGenerateEmbedUrl($id, $url)
+    {
+        $service = $this->getService();
+        $video = new Video($service);
+        $video->id = $id;
+
+        $this->assertEquals($url, $service->generateEmbedUrl($video));
+    }
+
     abstract public function dataForTestParse();
 
     abstract public function dataForTestParseFalse();
+
+    abstract public function dataForTestGenerateEmbedUrl();
 
     abstract protected function getService();
 }

@@ -30,7 +30,7 @@ interface ServiceInterface
      *
      * @return string HTML code
      */
-    public function html(Video $video);
+    public function generateEmbedUrl(Video $video);
 
     /**
      * Get the provider name

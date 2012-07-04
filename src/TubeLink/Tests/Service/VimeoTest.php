@@ -29,9 +29,15 @@ class VimeoTest extends ServiceTestCase
         );
     }
 
+    public function dataForTestGenerateEmbedUrl()
+    {
+        return array(
+            array('15247292', 'http://player.vimeo.com/video/15247292'),
+        );
+    }
+
     protected function getService()
     {
         return new Vimeo();
     }
 }
-

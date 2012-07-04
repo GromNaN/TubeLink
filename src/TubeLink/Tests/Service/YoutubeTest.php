@@ -37,6 +37,13 @@ class YoutubeTest extends ServiceTestCase
         );
     }
 
+    public function dataForTestGenerateEmbedUrl()
+    {
+        return array(
+            array('gHYfY9lZaRE', 'http://www.youtube.com/embed/gHYfY9lZaRE'),
+        );
+    }
+
     protected function getService()
     {
         return new Youtube();

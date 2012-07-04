@@ -39,9 +39,18 @@ class Video
      *
      * @return string
      */
-    public function render()
+    public function render(array $options = array())
     {
-        return $this->service->html($this);
+        $url = $this->service->generateEmbedUrl($this);
+        $options = array_replace(array(
+            'width' => 560,
+            'height' => 315,
+        ), $options);
+
+        $html = <<<HTML
+<iframe src="$url" width="{$options['width']}" height="{$options['height']}"></iframe>
+HTML;
+        return $html;
     }
 
     /**

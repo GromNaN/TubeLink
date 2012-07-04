@@ -52,13 +52,9 @@ class Youtube implements ServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function html(Video $video)
+    public function generateEmbedUrl(Video $video)
     {
-        $html = <<<HTML
-<iframe width="560" height="315" src="http://www.youtube.com/embed/{id}" frameborder="0" allowfullscreen></iframe>
-HTML;
-
-        return str_replace('{id}', $video->id, $html);
+        return sprintf('http://www.youtube.com/embed/%s', $video->id);
     }
 
     /**
