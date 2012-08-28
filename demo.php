@@ -10,10 +10,7 @@
 
 require __DIR__ . '/src/autoload.php';
 
-$t = new TubeLink\TubeLink();
-$t->registerService(new TubeLink\Service\Youtube());
-$t->registerService(new TubeLink\Service\Dailymotion());
-$t->registerService(new TubeLink\Service\Vimeo());
+$t = TubeLink\TubeLink::create();
 
 ?>
 <!DOCTYPE html>

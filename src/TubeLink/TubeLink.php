@@ -14,7 +14,7 @@ use TubeLink\Service\ServiceInterface;
 use TubeLink\Exception\ServiceNotFoundException;
 
 /**
- * Video.
+ * Entry point to the TubeLink library.
  *
  * @author Jérôme Tamarelle <jerome@tamarelle.net>
  */
@@ -48,5 +48,21 @@ class TubeLink implements TubeLinkInterface
         }
 
         throw new ServiceNotFoundException($url);
+    }
+
+    /**
+     * Create a TubeLink instance with all services registered.
+     *
+     * @return TubeLink\TubeLink
+     */
+    public function create()
+    {
+        $t = new static();
+
+        $t->registerService(new Service\Youtube());
+        $t->registerService(new Service\Dailymotion());
+        $t->registerService(new Service\Vimeo());
+
+        return $t;
     }
 }
