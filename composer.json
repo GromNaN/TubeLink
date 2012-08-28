@@ -13,7 +13,7 @@
         "php": ">=5.3.0"
     },
     "autoload": {
-        "psr-0": { "VideoDetective": "src/" }
+        "psr-0": { "TubeLink": "src/" }
     },
     "extra": {
         "branch-alias": {
