@@ -55,7 +55,7 @@ class TubeLink implements TubeLinkInterface
      *
      * @return TubeLink\TubeLink
      */
-    public function create()
+    static public function create()
     {
         $t = new static();
 
