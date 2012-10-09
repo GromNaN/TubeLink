@@ -10,7 +10,7 @@
 
 namespace TubeLink\Tests\Service;
 
-use TubeLink\Video;
+use TubeLink\Tube;
 
 abstract class ServiceTestCase extends \PHPUnit_Framework_TestCase
 {
@@ -21,7 +21,7 @@ abstract class ServiceTestCase extends \PHPUnit_Framework_TestCase
     {
         $video = $this->getService()->parse($url);
 
-        $this->assertInstanceOf('\TubeLink\Video', $video);
+        $this->assertInstanceOf('\TubeLink\Tube', $video);
         $this->assertEquals($id, $video->id);
     }
 
@@ -41,7 +41,7 @@ abstract class ServiceTestCase extends \PHPUnit_Framework_TestCase
     public function testGenerateEmbedUrl($id, $url)
     {
         $service = $this->getService();
-        $video = new Video($service);
+        $video = new Tube($service);
         $video->id = $id;
 
         $this->assertEquals($url, $service->generateEmbedUrl($video));

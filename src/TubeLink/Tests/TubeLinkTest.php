@@ -19,7 +19,7 @@ class TubeLinkTest extends \PHPUnit_Framework_TestCase
     {
         $video = $this->getTubeLink()->parse('http://www.youtu.be/gHYfY9lZaRE');
 
-        $this->assertInstanceOf('\TubeLink\Video', $video);
+        $this->assertInstanceOf('\TubeLink\Tube', $video);
         $this->assertEquals('youtube', $video->getService()->getName());
     }
 

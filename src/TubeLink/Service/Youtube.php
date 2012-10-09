@@ -10,7 +10,7 @@
 
 namespace TubeLink\Service;
 
-use TubeLink\Video;
+use TubeLink\Tube;
 
 class Youtube implements ServiceInterface
 {
@@ -43,7 +43,7 @@ class Youtube implements ServiceInterface
             return false;
         }
 
-        $video = new Video($this);
+        $video = new Tube($this);
         $video->id = $id;
 
         return $video;
@@ -52,7 +52,7 @@ class Youtube implements ServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function generateEmbedUrl(Video $video)
+    public function generateEmbedUrl(Tube $video)
     {
         return sprintf('http://www.youtube.com/embed/%s', $video->id);
     }

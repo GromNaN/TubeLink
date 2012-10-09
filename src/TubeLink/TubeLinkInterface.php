@@ -20,9 +20,9 @@ interface TubeLinkInterface
     /**
      * Parse a video URL and find its hosting service.
      *
-     * @param string $url Video URL
+     * @param string $url Tube URL
      *
-     * @return Video
+     * @return Tube
      *
      * @throws ProviderNotFoundException
      */
