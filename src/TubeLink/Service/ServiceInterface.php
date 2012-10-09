@@ -10,7 +10,7 @@
 
 namespace TubeLink\Service;
 
-use TubeLink\Video;
+use TubeLink\Tube;
 
 interface ServiceInterface
 {
@@ -19,18 +19,18 @@ interface ServiceInterface
      *
      * @param string $url URL to a video provider
      *
-     * @return Video|bool The video or FALSE if not supported
+     * @return Tube|bool The video or FALSE if not supported
      */
     public function parse($url);
 
     /**
      * Get the HTML to integrate a video from a given URL.
      *
-     * @param Video $video Video object
+     * @param Tube $video Tube object
      *
      * @return string HTML code
      */
-    public function generateEmbedUrl(Video $video);
+    public function generateEmbedUrl(Tube $video);
 
     /**
      * Get the provider name

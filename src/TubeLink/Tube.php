@@ -13,11 +13,11 @@ namespace TubeLink;
 use TubeLink\Service\ServiceInterface;
 
 /**
- * Video.
+ * Tube.
  *
  * @author Jérôme Tamarelle <jerome@tamarelle.net>
  */
-class Video
+class Tube
 {
     public $id;
 

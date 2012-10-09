@@ -10,7 +10,7 @@
 
 namespace TubeLink\Service;
 
-use TubeLink\Video;
+use TubeLink\Tube;
 
 class Dailymotion implements ServiceInterface
 {
@@ -29,7 +29,7 @@ class Dailymotion implements ServiceInterface
             return false;
         }
 
-        $video = new Video($this);
+        $video = new Tube($this);
         $video->id = $id;
 
         return $video;
@@ -38,7 +38,7 @@ class Dailymotion implements ServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function generateEmbedUrl(Video $video)
+    public function generateEmbedUrl(Tube $video)
     {
         return sprintf('http://www.dailymotion.com/embed/video/%s', $video->id);
     }
