@@ -10,7 +10,7 @@
 
 namespace TubeLink\Service;
 
-use TubeLink\Video;
+use TubeLink\Tube;
 
 class Vimeo implements ServiceInterface
 {
@@ -29,7 +29,7 @@ class Vimeo implements ServiceInterface
             return false;
         }
 
-        $video = new Video($this);
+        $video = new Tube($this);
         $video->id = $id;
 
         return $video;
@@ -38,7 +38,7 @@ class Vimeo implements ServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function generateEmbedUrl(Video $video)
+    public function generateEmbedUrl(Tube $video)
     {
         return sprintf('http://player.vimeo.com/video/%s', $video->id);
     }
