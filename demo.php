@@ -25,5 +25,9 @@ $t = TubeLink\TubeLink::create();
 
     <h1>Vimeo</h1>
     <?php echo $t->parse('http://vimeo.com/15247292')->render() ?>
+
+    <h1>Spotify</h1>
+    <?php echo $t->parse('https://embed.spotify.com/?uri=spotify:track:4bz7uB4edifWKJXSDxwHcs')->render() ?>
+
 </body>
 </html>
