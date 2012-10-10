@@ -28,15 +28,15 @@ class Youtube implements ServiceInterface
         if (false !== strpos($data['host'], 'youtube.')
             && in_array($data['path'], array('/watch', '/all_comments'))
             && isset($query['v'])
-            && preg_match('#^\w{11}$#', $query['v'])
+            && preg_match('#^[\w-]{11}$#', $query['v'])
         ) {
             $id = $query['v'];
         } elseif (false !== strpos($data['host'], 'youtu.be')
-            && preg_match('#^/?\w{11}/?$#', $data['path'])
+            && preg_match('#^/?[\w-]{11}/?$#', $data['path'])
         ) {
             $id = trim($data['path'], '/');
         } elseif (false !== strpos($data['host'], 'youtube.com')
-            && preg_match('{^/embed/(\w{11})}', $data['path'], $matches)
+            && preg_match('{^/embed/([\w-]{11})}', $data['path'], $matches)
         ) {
             $id = $matches[1];
         } else {
