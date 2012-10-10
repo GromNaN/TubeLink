@@ -1,7 +1,7 @@
 TubeLink - Parse any video URL
 ===============================
 
-**TubeLink** is a PHP library to extract video information from any URL.
+**TubeLink** is a PHP library to extract identifier from any URL of video / music / ...
 
 Supported Services
 ------------------
@@ -12,6 +12,7 @@ a supported URL and extract the video ID.
 * [Youtube](http://www.youtube.com/)
 * [Dailymotion](http://www.dailymotion.com/)
 * [Vimeo](http://www.vimeo.com/)
+* [Spotify](http://www.spotify.com/)
 * ... more to come
 
 Installation
@@ -62,9 +63,9 @@ $url = 'http://youtu.be/kffacxfA7G4';
 $parser = new TubeLink();
 $parser->registerService(new TubeLink\Service\Youtube());
 
-$video = $parser->parse($url);
+$tube = $parser->parse($url);
 
 // Shows the embedded video HTML
-echo $video->render();
+echo $tube->render();
 ```
 

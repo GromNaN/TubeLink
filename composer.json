@@ -1,7 +1,7 @@
 {
     "name": "grom/tube-link",
-    "description": "Extract video information from any URL and render HTML",
-    "keywords": ["video", "youtube", "url", "parser"],
+    "description": "Extract video/music information from any URL and render HTML",
+    "keywords": ["video", "youtube", "url", "parser", "spotify", "vimeo", "dailymotion"],
     "license": "MIT",
     "authors": [
         {
