@@ -62,6 +62,7 @@ class TubeLink implements TubeLinkInterface
         $t->registerService(new Service\Youtube());
         $t->registerService(new Service\Dailymotion());
         $t->registerService(new Service\Vimeo());
+        $t->registerService(new Service\Spotify());
 
         return $t;
     }
