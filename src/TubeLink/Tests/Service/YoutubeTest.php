@@ -26,6 +26,7 @@ class YoutubeTest extends ServiceTestCase
             array('http://www.youtu.be/gHYfY9lZaRE', 'gHYfY9lZaRE'),
             array('http://www.youtu.be/gHYfY9lZaRE/?feature=g-vrec', 'gHYfY9lZaRE'),
             array('http://www.youtube.com/embed/gHYfY9lZaRE', 'gHYfY9lZaRE'),
+            array('http://www.youtube.com/embed/P-8llsSbVDc?rel=0', 'P-8llsSbVDc'),
         );
     }
 
