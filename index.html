@@ -17,7 +17,7 @@
     <div class="wrapper">
       <header>
         <h1 class="header">Tubelink</h1>
-        <p class="header">Extract video information from any URL and render HTML</p>
+        <p class="header">Extract video &amp; music information from any URL and render HTML</p>
 
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/GromNaN/TubeLink/zipball/master">Download ZIP</a></li>
@@ -32,7 +32,7 @@
       <section>
         <h1>TubeLink - Parse any video URL</h1>
 
-<p><strong>TubeLink</strong> is a PHP library to extract video information from any URL.</p>
+<p><strong>TubeLink</strong> is a PHP library to extract identifier from any URL of video / music / ...</p>
 
 <h2>Supported Services</h2>
 
@@ -43,6 +43,7 @@ a supported URL and extract the video ID.</p>
 <li><a href="http://www.youtube.com/">Youtube</a></li>
 <li><a href="http://www.dailymotion.com/">Dailymotion</a></li>
 <li><a href="http://www.vimeo.com/">Vimeo</a></li>
+<li><a href="http://www.spotify.com/">Spotify</a></li>
 <li>... more to come</li>
 </ul><h1>Installation</h1>
 
@@ -50,66 +51,51 @@ a supported URL and extract the video ID.</p>
 
 <p>Just create a <code>composer.json</code> file for your project:</p>
 
-<div class="highlight">
-<pre><span class="p">{</span>
+<div class="highlight"><pre><span class="p">{</span>
     <span class="nt">"require"</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">"grom/tube-link"</span><span class="p">:</span> <span class="s2">"dev-master"</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre>
-</div>
-
+</pre></div>
 
 <p>And run these two commands to install it:</p>
 
-<div class="highlight">
-<pre><span class="nv">$ </span>wget http://getcomposer.org/composer.phar
+<div class="highlight"><pre><span class="nv">$ </span>wget http://getcomposer.org/composer.phar
 <span class="nv">$ </span>php composer.phar install
-</pre>
-</div>
-
+</pre></div>
 
 <p>Now you can add the autoloader, and you will have access to the library:</p>
 
-<div class="highlight">
-<pre><span class="x">require 'vendor/autoload.php';</span>
-</pre>
-</div>
-
+<div class="highlight"><pre><span class="k">require</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
+</pre></div>
 
 <p>If you don't use neither <strong>Composer</strong> nor a <em>ClassLoader</em> in your application, just require the provided autoloader:</p>
 
-<div class="highlight">
-<pre><span class="x">require_once 'src/autoload.php';</span>
-</pre>
-</div>
-
+<div class="highlight"><pre><span class="k">require_once</span> <span class="s1">'src/autoload.php'</span><span class="p">;</span>
+</pre></div>
 
 <p>You're done.</p>
 
 <h1>Usage</h1>
 
-<div class="highlight">
-<pre><span class="x">use TubeLink\TubeLink;</span>
+<div class="highlight"><pre><span class="k">use</span> <span class="nx">TubeLink\TubeLink</span><span class="p">;</span>
 
-<span class="x">$url = 'http://youtu.be/kffacxfA7G4';</span>
+<span class="nv">$url</span> <span class="o">=</span> <span class="s1">'http://youtu.be/kffacxfA7G4'</span><span class="p">;</span>
 
-<span class="x">$parser = new TubeLink();</span>
-<span class="x">$parser-&gt;registerService(new TubeLink\Service\Youtube());</span>
+<span class="nv">$parser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TubeLink</span><span class="p">();</span>
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">registerService</span><span class="p">(</span><span class="k">new</span> <span class="nx">TubeLink\Service\Youtube</span><span class="p">());</span>
 
-<span class="x">$video = $parser-&gt;parse($url);</span>
+<span class="nv">$tube</span> <span class="o">=</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">parse</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>
 
-<span class="x">// Shows the embedded video HTML</span>
-<span class="x">echo $video-&gt;render();</span>
-</pre>
-</div>
-
+<span class="c1">// Shows the embedded video HTML</span>
+<span class="k">echo</span> <span class="nv">$tube</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">();</span>
+</pre></div>
       </section>
       <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 		
   </body>
 </html>
