@@ -28,6 +28,8 @@ class YoutubeTest extends ServiceTestCase
             array('http://www.youtube.com/embed/gHYfY9lZaRE', 'gHYfY9lZaRE'),
             array('http://www.youtube.com/embed/P-8llsSbVDc?rel=0', 'P-8llsSbVDc'),
             array('http://www.youtube-nocookie.com/embed/P-8llsSbVDc?rel=0', 'P-8llsSbVDc'),
+            array('http://www.youtube.com/v/uPgLxYUHRcg?fs=1&hl=fr_FR', 'uPgLxYUHRcg'),
+            array('http://www.youtube-nocookie.com/v/Kw_yO2utN0c?fs=1&hl=fr_FR', 'Kw_yO2utN0c'),
         );
     }
 
