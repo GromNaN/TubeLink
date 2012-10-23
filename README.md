@@ -61,7 +61,7 @@ use TubeLink\TubeLink;
 $url = 'http://youtu.be/kffacxfA7G4';
 
 $parser = new TubeLink();
-$parser->registerService(new TubeLink\Service\Youtube());
+$parser->registerService(new \TubeLink\Service\Youtube());
 
 $tube = $parser->parse($url);
 
