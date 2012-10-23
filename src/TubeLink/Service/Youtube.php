@@ -25,6 +25,10 @@ class Youtube implements ServiceInterface
             parse_str($data['query'], $query);
         }
 
+        if (!isset($data['host'])) {
+            return false;
+        }
+
         if (false !== strpos($data['host'], 'youtube.')
             && in_array($data['path'], array('/watch', '/all_comments'))
             && isset($query['v'])
@@ -35,12 +39,12 @@ class Youtube implements ServiceInterface
             && preg_match('#^/?[\w-]{11}/?$#', $data['path'])
         ) {
             $id = trim($data['path'], '/');
-        } elseif (false !== strpos($data['host'], 'youtube.com')
+        } elseif (false != preg_match('/^www\.youtube(-nocookie)?\.com$/',$data['host'])
             && preg_match('{^/embed/([\w-]{11})}', $data['path'], $matches)
         ) {
             $id = $matches[1];
-        } elseif (false !== strpos($data['host'], 'youtube-nocookie.com')
-            && preg_match('{^/embed/([\w-]{11})}', $data['path'], $matches)
+        } elseif (false != preg_match('/^www\.youtube(-nocookie)?\.com$/',$data['host'])
+            && preg_match('{^/v/([\w-]{11})}', $data['path'], $matches)
         ) {
             $id = $matches[1];
         } else {
