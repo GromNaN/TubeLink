@@ -25,6 +25,10 @@ class Dailymotion implements ServiceInterface
             && preg_match('#^(/embed)?/video/([0-9a-z]+)(_[-_\w]+)?$#', $data['path'], $matches)
         ) {
             $id = $matches[2];
+        } else if (false !== strpos($data['host'], 'dailymotion.com')
+            && preg_match('#^(/embed)?/swf/video/([0-9a-z]+)(_[-_\w]+)?$#', $data['path'], $matches)
+        ) {
+            $id = $matches[2];
         } else {
             return false;
         }

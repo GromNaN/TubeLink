@@ -20,6 +20,7 @@ class DailymotionTest extends ServiceTestCase
             array('http://www.dailymotion.com/video/xrme0d_la-seance-du-mardi-ep22-un-bonheur-n-arrive-jamais-seul_shortfilms', 'xrme0d'),
             array('http://www.dailymotion.com/video/xr9av5', 'xr9av5'),
             array('http://www.dailymotion.com/embed/video/xrrwdr', 'xrrwdr'),
+            array('http://www.dailymotion.com/swf/video/xg0vvh?width=500&theme=none&foreground=%23F7FFFD&highlight=%23FFC300&background=%23171D1B&start=&animatedTitle=&iframe=0&additionalInfos=0&autoPlay=0&hideInfos=0', 'xg0vvh'),
         );
     }
 
