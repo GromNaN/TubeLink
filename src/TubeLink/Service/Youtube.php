@@ -47,6 +47,10 @@ class Youtube implements ServiceInterface
             && preg_match('{^/v/([\w-]{11})}', $data['path'], $matches)
         ) {
             $id = $matches[1];
+        } elseif (false != preg_match('/^www\.youtube(-nocookie)?\.com$/',$data['host'])
+            && preg_match('{^/p/([\w-]{16})}', $data['path'], $matches)
+        ) {
+            $id = $matches[1];
         } else {
             return false;
         }
