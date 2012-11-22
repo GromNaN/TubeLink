@@ -13,6 +13,7 @@ a supported URL and extract the video ID.
 * [Dailymotion](http://www.dailymotion.com/)
 * [Vimeo](http://www.vimeo.com/)
 * [Spotify](http://www.spotify.com/)
+* [SoundCloud](http://soundcloud.com/)
 * ... more to come
 
 Installation

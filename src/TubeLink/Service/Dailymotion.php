@@ -20,7 +20,9 @@ class Dailymotion implements ServiceInterface
     public function parse($url)
     {
         $data  = parse_url($url);
-
+        if (empty($data['host'])) {
+          return false;
+        }
         if (false !== strpos($data['host'], 'dailymotion.com')
             && preg_match('#^(/embed)?/video/([0-9a-z]+)(_[-_\w]+)?$#', $data['path'], $matches)
         ) {

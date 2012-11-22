@@ -20,7 +20,9 @@ class Vimeo implements ServiceInterface
     public function parse($url)
     {
         $data  = parse_url($url);
-
+        if (empty($data['host'])) {
+          return false;
+        }
         if (false !== strpos($data['host'], 'vimeo.com')
             && preg_match('#^/(video/)?([0-9]+)?$#', $data['path'], $matches)
         ) {
