@@ -44,6 +44,7 @@ a supported URL and extract the video ID.</p>
 <li><a href="http://www.dailymotion.com/">Dailymotion</a></li>
 <li><a href="http://www.vimeo.com/">Vimeo</a></li>
 <li><a href="http://www.spotify.com/">Spotify</a></li>
+<li><a href="http://soundcloud.com/">SoundCloud</a></li>
 <li>... more to come</li>
 </ul><h1>Installation</h1>
 
@@ -83,7 +84,7 @@ a supported URL and extract the video ID.</p>
 <span class="nv">$url</span> <span class="o">=</span> <span class="s1">'http://youtu.be/kffacxfA7G4'</span><span class="p">;</span>
 
 <span class="nv">$parser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TubeLink</span><span class="p">();</span>
-<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">registerService</span><span class="p">(</span><span class="k">new</span> <span class="nx">TubeLink\Service\Youtube</span><span class="p">());</span>
+<span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">registerService</span><span class="p">(</span><span class="k">new</span> <span class="nx">\TubeLink\Service\Youtube</span><span class="p">());</span>
 
 <span class="nv">$tube</span> <span class="o">=</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="na">parse</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>
 
