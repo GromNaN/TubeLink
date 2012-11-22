@@ -29,5 +29,8 @@ $t = TubeLink\TubeLink::create();
     <h1>Spotify</h1>
     <?php echo $t->parse('https://embed.spotify.com/?uri=spotify:track:4bz7uB4edifWKJXSDxwHcs')->render() ?>
 
+    <h1>SoundCloud</h1>
+    <?php echo $t->parse('http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F17373708')->render() ?>
+
 </body>
 </html>

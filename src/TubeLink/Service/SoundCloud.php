@@ -12,7 +12,7 @@ namespace TubeLink\Service;
 
 use TubeLink\Tube;
 
-class Spotify implements ServiceInterface
+class SoundCloud implements ServiceInterface
 {
     /**
      * {@inheritDoc}
@@ -23,21 +23,22 @@ class Spotify implements ServiceInterface
         if (empty($data['host'])) {
           return false;
         }
-        if (false !== strpos($data['host'], 'embed.spotify.com')
-            && isset($data['query'])
-            && preg_match('#^uri=spotify:([0-9a-zA-Z:]+)$#', $data['query'], $matches)) {
-            $id = $matches[1];
-        } else if (false !== strpos($data['host'], 'open.spotify.com')
-          && preg_match('#^/([0-9a-zA-Z/]+)$#', $data['path'], $matches)) {
-            $id = str_replace('/', ':', $matches[1]);
+        if (false !== strpos($data['host'], 'soundcloud.com') && isset($data['query'])) {
+          $queryFields = array();
+           parse_str($data['query'], $queryFields);
+           if (isset($queryFields['url']) && preg_match('#http://api.soundcloud.com/([^&]*)#', $queryFields['url'], $matches)) {
+             $id = $matches[1];
+           } else {
+             return false;
+           }
         } else {
             return false;
         }
 
-        $video = new Tube($this);
-        $video->id = $id;
+        $tube = new Tube($this);
+        $tube->id = $id;
 
-        return $video;
+        return $tube;
     }
 
     /**
@@ -45,7 +46,7 @@ class Spotify implements ServiceInterface
      */
     public function generateEmbedUrl(Tube $video)
     {
-        return sprintf('https://embed.spotify.com/?uri=spotify:%s', $video->id);
+        return 'http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2F'.urlencode($video->id);
     }
 
     /**
@@ -53,6 +54,6 @@ class Spotify implements ServiceInterface
      */
     public function getName()
     {
-        return 'spotify';
+        return 'soundcloud';
     }
 }
