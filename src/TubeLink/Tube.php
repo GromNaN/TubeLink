@@ -54,6 +54,16 @@ HTML;
     }
 
     /**
+     * Retrun the preview of the video (the thumbnail)
+     *
+     * @return string
+     */
+    public function thumbnail()
+    {
+        return $this->service->getThumbnailUrl($this);
+    }
+
+    /**
      * @return ServiceInterface
      */
     public function getService()

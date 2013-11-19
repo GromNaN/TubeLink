@@ -11,6 +11,7 @@
 namespace TubeLink\Tests\Service;
 
 use TubeLink\Service\Dailymotion;
+use TubeLink\Tube;
 
 class DailymotionTest extends ServiceTestCase
 {
@@ -38,8 +39,36 @@ class DailymotionTest extends ServiceTestCase
         );
     }
 
-    protected function getService()
+    public function dataForTestThumbnailUrl()
     {
-        return new Dailymotion();
+        return array(
+            array('xrrwdr', 'http://s2.dmcdn.net/ecYc.jpg', 'thumbnail_url'),
+            array('xrrwdr', 'http://s2.dmcdn.net/ecYc/x360-0qm.jpg', 'thumbnail_360_url'),
+        );
+    }
+
+    public function dataForTestThumbnailUrlFalse()
+    {
+        return array(
+            array('xrrwdr', ''),
+            array('456456456', null),
+        );
+    }
+
+    protected function getService($options = array())
+    {
+        return new Dailymotion($options);
+    }
+
+    /**
+     * @dataProvider dataForTestThumbnailUrl
+     */
+    public function testGetThumbnailUrl($id, $thumbnailUrl, $thumbnailSize = 'thumbnail_url')
+    {
+        $service = $this->getService(array('thumbnail' => $thumbnailSize));
+        $video = new Tube($service);
+        $video->id = $id;
+
+        $this->assertEquals($thumbnailUrl, $video->thumbnail());
     }
 }

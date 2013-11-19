@@ -14,12 +14,28 @@ use TubeLink\Tube;
 
 class Dailymotion implements ServiceInterface
 {
+    private $thumbnailSize;
+
+    /**
+     * Define the thumbnail size.
+     *
+     * Check the possible values of `thumbnail_*_url` here:
+     * http://www.dailymotion.com/doc/api/obj-video.html
+     *
+     * @param  array     $options
+     *                      - thumbnail: Identifies which thumbnail size to use (default: thumbnail_url)
+     */
+    public function __construct($options = array())
+    {
+        $this->thumbnailSize = isset($options['thumbnail']) ? $options['thumbnail'] : 'thumbnail_url';
+    }
+
     /**
      * {@inheritDoc}
      */
     public function parse($url)
     {
-        $data  = parse_url($url);
+        $data = parse_url($url);
         if (empty($data['host'])) {
           return false;
         }
@@ -55,5 +71,29 @@ class Dailymotion implements ServiceInterface
     public function getName()
     {
         return 'dailymotion';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getThumbnailUrl(Tube $video)
+    {
+        if (empty($this->thumbnailSize)) {
+            return false;
+        }
+
+        try {
+            $data = file_get_contents(sprintf('https://api.dailymotion.com/video/%s?fields=%s', $video->id, $this->thumbnailSize));
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        if (false === $data) {
+            return false;
+        }
+
+        $data = json_decode($data, true);
+
+        return $data[$this->thumbnailSize];
     }
 }

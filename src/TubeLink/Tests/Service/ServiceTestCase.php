@@ -47,11 +47,25 @@ abstract class ServiceTestCase extends \PHPUnit_Framework_TestCase
         $this->assertEquals($url, $service->generateEmbedUrl($video));
     }
 
+    /**
+     * @dataProvider dataForTestThumbnailUrlFalse
+     */
+    public function testGetThumbnailUrlFalse($id, $thumbnailSize)
+    {
+        $service = $this->getService(array('thumbnail' => $thumbnailSize));
+        $video = new Tube($service);
+        $video->id = $id;
+
+        $this->assertFalse($video->thumbnail());
+    }
+
     abstract public function dataForTestParse();
 
     abstract public function dataForTestParseFalse();
 
     abstract public function dataForTestGenerateEmbedUrl();
+
+    abstract public function dataForTestThumbnailUrlFalse();
 
     abstract protected function getService();
 }

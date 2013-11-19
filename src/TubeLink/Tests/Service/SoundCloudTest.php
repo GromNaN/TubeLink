@@ -36,6 +36,13 @@ class SoundCloudTest extends ServiceTestCase
         );
     }
 
+    public function dataForTestThumbnailUrlFalse()
+    {
+        return array(
+            array('tracks/17373708', ''),
+        );
+    }
+
     protected function getService()
     {
         return new SoundCloud();

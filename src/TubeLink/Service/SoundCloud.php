@@ -56,4 +56,13 @@ class SoundCloud implements ServiceInterface
     {
         return 'soundcloud';
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getThumbnailUrl(Tube $video)
+    {
+        // Not implemented
+        return false;
+    }
 }

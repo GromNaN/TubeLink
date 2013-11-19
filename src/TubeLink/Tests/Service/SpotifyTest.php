@@ -37,6 +37,13 @@ class SpotifyTest extends ServiceTestCase
         );
     }
 
+    public function dataForTestThumbnailUrlFalse()
+    {
+        return array(
+            array('track:4bz7uB4edifWKJXSDxwHcs', ''),
+        );
+    }
+
     protected function getService()
     {
         return new Spotify();

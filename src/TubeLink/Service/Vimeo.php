@@ -14,12 +14,28 @@ use TubeLink\Tube;
 
 class Vimeo implements ServiceInterface
 {
+    private $thumbnailSize;
+
+    /**
+     * Define the thumbnail size.
+     *
+     * Check the possible values of `thumbnail_*` here:
+     * http://developer.vimeo.com/apis/simple#response-data
+     *
+     * @param  array     $options
+     *                      - thumbnail: Identifies which thumbnail size to use (default: thumbnail_large)
+     */
+    public function __construct($options = array())
+    {
+        $this->thumbnailSize = isset($options['thumbnail']) ? $options['thumbnail'] : 'thumbnail_large';
+    }
+
     /**
      * {@inheritDoc}
      */
     public function parse($url)
     {
-        $data  = parse_url($url);
+        $data = parse_url($url);
         if (empty($data['host'])) {
           return false;
         }
@@ -51,5 +67,33 @@ class Vimeo implements ServiceInterface
     public function getName()
     {
         return 'vimeo';
+    }
+
+    /**
+     * Get the thumbnail from a given URL.
+     *
+     * @param Tube $video Tube object
+     *
+     * @return string Thumbnail url
+     */
+    public function getThumbnailUrl(Tube $video)
+    {
+        if (empty($this->thumbnailSize)) {
+            return false;
+        }
+
+        try {
+            $data = file_get_contents(sprintf('http://vimeo.com/api/v2/video/%s.json', $video->id));
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        if (false === $data) {
+            return false;
+        }
+
+        $data = json_decode($data, true);
+
+        return $data[0][$this->thumbnailSize];
     }
 }

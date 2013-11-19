@@ -68,5 +68,16 @@ $tube = $parser->parse($url);
 
 // Shows the embedded video HTML
 echo $tube->render();
+
+// Return the thumbnail
+echo $tube->thumbnail();
 ```
 
+Image Preview
+=============
+
+This feature is only available for these services:
+
+* Youtube
+* Dailymotion
+* Vimeo
