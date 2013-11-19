@@ -14,12 +14,27 @@ use TubeLink\Tube;
 
 class Youtube implements ServiceInterface
 {
+    private $thumbnailSize;
+
+    /**
+     * Define the thumbnail size.
+     *
+     * Check the possible values of `yt:name` here:
+     * https://developers.google.com/youtube/2.0/reference#youtube_data_api_tag_media:thumbnail
+     *
+     * @param  string     $thumbnailSize    Identifies which thumbnail size to use
+     */
+    public function __construct($thumbnailSize = 'hqdefault')
+    {
+        $this->thumbnailSize = $thumbnailSize;
+    }
+
     /**
      * {@inheritDoc}
      */
     public function parse($url)
     {
-        $data  = parse_url($url);
+        $data = parse_url($url);
 
         if (empty($data['host'])) {
             return false;
@@ -76,5 +91,21 @@ class Youtube implements ServiceInterface
     public function getName()
     {
         return 'youtube';
+    }
+
+    /**
+     * Get the thumbnail from a given URL.
+     *
+     * @param Tube $video Tube object
+     *
+     * @return string Thumbnail url
+     */
+    public function getThumbnailUrl(Tube $video)
+    {
+        if (0 === strlen($this->thumbnailSize)) {
+            return false;
+        }
+
+        return sprintf('http://img.youtube.com/vi/%s/%s.jpg', $video->id, $this->thumbnailSize);
     }
 }

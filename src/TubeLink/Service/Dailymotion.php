@@ -11,9 +11,25 @@
 namespace TubeLink\Service;
 
 use TubeLink\Tube;
+use Guzzle\Http\Client;
 
 class Dailymotion implements ServiceInterface
 {
+    private $thumbnailSize;
+
+    /**
+     * Define the thumbnail size.
+     *
+     * Check the possible values of `thumbnail_*_url` here:
+     * http://www.dailymotion.com/doc/api/obj-video.html
+     *
+     * @param  string     $thumbnailSize    Identifies which thumbnail size to use
+     */
+    public function __construct($thumbnailSize = 'thumbnail_url')
+    {
+        $this->thumbnailSize = $thumbnailSize;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -55,5 +71,28 @@ class Dailymotion implements ServiceInterface
     public function getName()
     {
         return 'dailymotion';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getThumbnailUrl(Tube $video)
+    {
+        if (empty($this->thumbnailSize)) {
+            return false;
+        }
+
+        $client = new Client('https://api.dailymotion.com');
+
+        try {
+            $data = $client
+                ->get(sprintf('/video/%s?fields=%s', $video->id, $this->thumbnailSize))
+                ->send()
+                ->json();
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        return $data[$this->thumbnailSize];
     }
 }

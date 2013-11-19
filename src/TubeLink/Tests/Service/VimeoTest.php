@@ -11,6 +11,7 @@
 namespace TubeLink\Tests\Service;
 
 use TubeLink\Service\Vimeo;
+use TubeLink\Tube;
 
 class VimeoTest extends ServiceTestCase
 {
@@ -36,8 +37,36 @@ class VimeoTest extends ServiceTestCase
         );
     }
 
-    protected function getService()
+    public function dataForTestThumbnailUrl()
     {
-        return new Vimeo();
+        return array(
+            array('15247292', 'http://b.vimeocdn.com/ts/915/096/91509642_640.jpg', 'thumbnail_large'),
+            array('15247292', 'http://b.vimeocdn.com/ts/915/096/91509642_100.jpg', 'thumbnail_small'),
+        );
+    }
+
+    public function dataForTestThumbnailUrlFalse()
+    {
+        return array(
+            array('15247292', ''),
+            array('99999999', 'thumbnail_large'),
+        );
+    }
+
+    protected function getService($thumbnailSize = 'thumbnail_large')
+    {
+        return new Vimeo($thumbnailSize);
+    }
+
+    /**
+     * @dataProvider dataForTestThumbnailUrl
+     */
+    public function testGetThumbnailUrl($id, $thumbnailUrl, $thumbnailSize)
+    {
+        $service = $this->getService($thumbnailSize);
+        $video = new Tube($service);
+        $video->id = $id;
+
+        $this->assertEquals($thumbnailUrl, $video->imagePreview());
     }
 }

@@ -11,9 +11,25 @@
 namespace TubeLink\Service;
 
 use TubeLink\Tube;
+use Guzzle\Http\Client;
 
 class Vimeo implements ServiceInterface
 {
+    private $thumbnailSize;
+
+    /**
+     * Define the thumbnail size.
+     *
+     * Check the possible values of `thumbnail_*` here:
+     * http://developer.vimeo.com/apis/simple#response-data
+     *
+     * @param  string     $thumbnailSize    Identifies which thumbnail size to use
+     */
+    public function __construct($thumbnailSize = 'thumbnail_large')
+    {
+        $this->thumbnailSize = $thumbnailSize;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -51,5 +67,32 @@ class Vimeo implements ServiceInterface
     public function getName()
     {
         return 'vimeo';
+    }
+
+    /**
+     * Get the thumbnail from a given URL.
+     *
+     * @param Tube $video Tube object
+     *
+     * @return string Thumbnail url
+     */
+    public function getThumbnailUrl(Tube $video)
+    {
+        if (empty($this->thumbnailSize)) {
+            return false;
+        }
+
+        $client = new Client('http://vimeo.com');
+
+        try {
+            $data = $client
+                ->get(sprintf('/api/v2/video/%s.json', $video->id))
+                ->send()
+                ->json();
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        return $data[0][$this->thumbnailSize];
     }
 }

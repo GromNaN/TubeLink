@@ -45,12 +45,6 @@ Now you can add the autoloader, and you will have access to the library:
 require 'vendor/autoload.php';
 ```
 
-If you don't use neither **Composer** nor a _ClassLoader_ in your application, just require the provided autoloader:
-
-``` php
-require_once 'src/autoload.php';
-```
-
 You're done.
 
 Usage
@@ -68,5 +62,16 @@ $tube = $parser->parse($url);
 
 // Shows the embedded video HTML
 echo $tube->render();
+
+// Return the thumbnail
+echo $tube->imagePreview();
 ```
 
+Image Preview
+=============
+
+This feature is only available for these services:
+
+* Youtube
+* Dailymotion
+* Vimeo

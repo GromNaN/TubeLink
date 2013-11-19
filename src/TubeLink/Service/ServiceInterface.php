@@ -38,4 +38,13 @@ interface ServiceInterface
      * @return string Lowercase name
      */
     public function getName();
+
+    /**
+     * Get the thumbnail from a given URL.
+     *
+     * @param Tube $video Tube object
+     *
+     * @return string Thumbnail url
+     */
+    public function getThumbnailUrl(Tube $video);
 }

@@ -55,4 +55,13 @@ class Spotify implements ServiceInterface
     {
         return 'spotify';
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getThumbnailUrl(Tube $video)
+    {
+        // Not implemented
+        return false;
+    }
 }

@@ -11,6 +11,7 @@
 namespace TubeLink\Tests\Service;
 
 use TubeLink\Service\Youtube;
+use TubeLink\Tube;
 
 class YoutubeTest extends ServiceTestCase
 {
@@ -49,8 +50,35 @@ class YoutubeTest extends ServiceTestCase
         );
     }
 
-    protected function getService()
+    public function dataForTestThumbnailUrl()
     {
-        return new Youtube();
+        return array(
+            array('fZ_JOBCLF-I', 'http://img.youtube.com/vi/fZ_JOBCLF-I/hqdefault.jpg', 'hqdefault'),
+            array('fZ_JOBCLF-I', 'http://img.youtube.com/vi/fZ_JOBCLF-I/0.jpg', '0'),
+        );
+    }
+
+    public function dataForTestThumbnailUrlFalse()
+    {
+        return array(
+            array('fZ_JOBCLF-I', ''),
+        );
+    }
+
+    protected function getService($thumbnailSize = 'hqdefault')
+    {
+        return new Youtube($thumbnailSize);
+    }
+
+    /**
+     * @dataProvider dataForTestThumbnailUrl
+     */
+    public function testGetThumbnailUrl($id, $thumbnailUrl, $thumbnailSize)
+    {
+        $service = $this->getService($thumbnailSize);
+        $video = new Tube($service);
+        $video->id = $id;
+
+        $this->assertEquals($thumbnailUrl, $video->imagePreview());
     }
 }
