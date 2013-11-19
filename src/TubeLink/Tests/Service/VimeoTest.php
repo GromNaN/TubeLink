@@ -53,20 +53,20 @@ class VimeoTest extends ServiceTestCase
         );
     }
 
-    protected function getService($thumbnailSize = 'thumbnail_large')
+    protected function getService($options = array())
     {
-        return new Vimeo($thumbnailSize);
+        return new Vimeo($options);
     }
 
     /**
      * @dataProvider dataForTestThumbnailUrl
      */
-    public function testGetThumbnailUrl($id, $thumbnailUrl, $thumbnailSize)
+    public function testGetThumbnailUrl($id, $thumbnailUrl, $thumbnailSize = 'thumbnail_large')
     {
-        $service = $this->getService($thumbnailSize);
+        $service = $this->getService(array('thumbnail' => $thumbnailSize));
         $video = new Tube($service);
         $video->id = $id;
 
-        $this->assertEquals($thumbnailUrl, $video->imagePreview());
+        $this->assertEquals($thumbnailUrl, $video->thumbnail());
     }
 }

@@ -58,7 +58,7 @@ HTML;
      *
      * @return string
      */
-    public function imagePreview()
+    public function thumbnail()
     {
         return $this->service->getThumbnailUrl($this);
     }

@@ -8,7 +8,7 @@
  * @licence MIT
  */
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/src/autoload.php';
 
 $t = TubeLink\TubeLink::create();
 
@@ -18,15 +18,15 @@ $t = TubeLink\TubeLink::create();
 <head><title>Videos</title></head>
 <body>
     <h1>Youtube</h1>
-    <img src="<?php echo $t->parse('http://youtu.be/fZ_JOBCLF-I')->imagePreview() ?>" />
+    <img src="<?php echo $t->parse('http://youtu.be/fZ_JOBCLF-I')->thumbnail() ?>" />
     <?php echo $t->parse('http://youtu.be/fZ_JOBCLF-I')->render() ?>
 
     <h1>Dailymotion</h1>
-    <img src="<?php echo $t->parse('http://www.dailymotion.com/video/xr9av5')->imagePreview() ?>" />
+    <img src="<?php echo $t->parse('http://www.dailymotion.com/video/xr9av5')->thumbnail() ?>" />
     <?php echo $t->parse('http://www.dailymotion.com/video/xr9av5')->render() ?>
 
     <h1>Vimeo</h1>
-    <img src="<?php echo $t->parse('http://vimeo.com/15247292')->imagePreview() ?>" />
+    <img src="<?php echo $t->parse('http://vimeo.com/15247292')->thumbnail() ?>" />
     <?php echo $t->parse('http://vimeo.com/15247292')->render() ?>
 
     <h1>Spotify</h1>

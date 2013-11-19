@@ -22,11 +22,12 @@ class Youtube implements ServiceInterface
      * Check the possible values of `yt:name` here:
      * https://developers.google.com/youtube/2.0/reference#youtube_data_api_tag_media:thumbnail
      *
-     * @param  string     $thumbnailSize    Identifies which thumbnail size to use
+     * @param  array     $options
+     *                      - thumbnail: Identifies which thumbnail size to use (default: hqdefault)
      */
-    public function __construct($thumbnailSize = 'hqdefault')
+    public function __construct($options = array())
     {
-        $this->thumbnailSize = $thumbnailSize;
+        $this->thumbnailSize = isset($options['thumbnail']) ? $options['thumbnail'] : 'hqdefault';
     }
 
     /**

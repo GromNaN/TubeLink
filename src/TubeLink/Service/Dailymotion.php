@@ -11,7 +11,6 @@
 namespace TubeLink\Service;
 
 use TubeLink\Tube;
-use Guzzle\Http\Client;
 
 class Dailymotion implements ServiceInterface
 {
@@ -23,11 +22,12 @@ class Dailymotion implements ServiceInterface
      * Check the possible values of `thumbnail_*_url` here:
      * http://www.dailymotion.com/doc/api/obj-video.html
      *
-     * @param  string     $thumbnailSize    Identifies which thumbnail size to use
+     * @param  array     $options
+     *                      - thumbnail: Identifies which thumbnail size to use (default: thumbnail_url)
      */
-    public function __construct($thumbnailSize = 'thumbnail_url')
+    public function __construct($options = array())
     {
-        $this->thumbnailSize = $thumbnailSize;
+        $this->thumbnailSize = isset($options['thumbnail']) ? $options['thumbnail'] : 'thumbnail_url';
     }
 
     /**
@@ -35,7 +35,7 @@ class Dailymotion implements ServiceInterface
      */
     public function parse($url)
     {
-        $data  = parse_url($url);
+        $data = parse_url($url);
         if (empty($data['host'])) {
           return false;
         }
@@ -82,16 +82,17 @@ class Dailymotion implements ServiceInterface
             return false;
         }
 
-        $client = new Client('https://api.dailymotion.com');
-
         try {
-            $data = $client
-                ->get(sprintf('/video/%s?fields=%s', $video->id, $this->thumbnailSize))
-                ->send()
-                ->json();
+            $data = file_get_contents(sprintf('https://api.dailymotion.com/video/%s?fields=%s', $video->id, $this->thumbnailSize));
         } catch (\Exception $e) {
             return false;
         }
+
+        if (false === $data) {
+            return false;
+        }
+
+        $data = json_decode($data, true);
 
         return $data[$this->thumbnailSize];
     }

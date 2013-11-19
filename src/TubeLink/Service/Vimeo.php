@@ -11,7 +11,6 @@
 namespace TubeLink\Service;
 
 use TubeLink\Tube;
-use Guzzle\Http\Client;
 
 class Vimeo implements ServiceInterface
 {
@@ -23,11 +22,12 @@ class Vimeo implements ServiceInterface
      * Check the possible values of `thumbnail_*` here:
      * http://developer.vimeo.com/apis/simple#response-data
      *
-     * @param  string     $thumbnailSize    Identifies which thumbnail size to use
+     * @param  array     $options
+     *                      - thumbnail: Identifies which thumbnail size to use (default: thumbnail_large)
      */
-    public function __construct($thumbnailSize = 'thumbnail_large')
+    public function __construct($options = array())
     {
-        $this->thumbnailSize = $thumbnailSize;
+        $this->thumbnailSize = isset($options['thumbnail']) ? $options['thumbnail'] : 'thumbnail_large';
     }
 
     /**
@@ -35,7 +35,7 @@ class Vimeo implements ServiceInterface
      */
     public function parse($url)
     {
-        $data  = parse_url($url);
+        $data = parse_url($url);
         if (empty($data['host'])) {
           return false;
         }
@@ -82,16 +82,17 @@ class Vimeo implements ServiceInterface
             return false;
         }
 
-        $client = new Client('http://vimeo.com');
-
         try {
-            $data = $client
-                ->get(sprintf('/api/v2/video/%s.json', $video->id))
-                ->send()
-                ->json();
+            $data = file_get_contents(sprintf('http://vimeo.com/api/v2/video/%s.json', $video->id));
         } catch (\Exception $e) {
             return false;
         }
+
+        if (false === $data) {
+            return false;
+        }
+
+        $data = json_decode($data, true);
 
         return $data[0][$this->thumbnailSize];
     }

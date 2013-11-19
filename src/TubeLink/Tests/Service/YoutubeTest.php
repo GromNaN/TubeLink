@@ -65,20 +65,20 @@ class YoutubeTest extends ServiceTestCase
         );
     }
 
-    protected function getService($thumbnailSize = 'hqdefault')
+    protected function getService($options = array())
     {
-        return new Youtube($thumbnailSize);
+        return new Youtube($options);
     }
 
     /**
      * @dataProvider dataForTestThumbnailUrl
      */
-    public function testGetThumbnailUrl($id, $thumbnailUrl, $thumbnailSize)
+    public function testGetThumbnailUrl($id, $thumbnailUrl, $thumbnailSize = 'hqdefault')
     {
-        $service = $this->getService($thumbnailSize);
+        $service = $this->getService(array('thumbnail' => $thumbnailSize));
         $video = new Tube($service);
         $video->id = $id;
 
-        $this->assertEquals($thumbnailUrl, $video->imagePreview());
+        $this->assertEquals($thumbnailUrl, $video->thumbnail());
     }
 }

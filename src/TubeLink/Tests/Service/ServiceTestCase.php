@@ -52,11 +52,11 @@ abstract class ServiceTestCase extends \PHPUnit_Framework_TestCase
      */
     public function testGetThumbnailUrlFalse($id, $thumbnailSize)
     {
-        $service = $this->getService($thumbnailSize);
+        $service = $this->getService(array('thumbnail' => $thumbnailSize));
         $video = new Tube($service);
         $video->id = $id;
 
-        $this->assertFalse($video->imagePreview());
+        $this->assertFalse($video->thumbnail());
     }
 
     abstract public function dataForTestParse();
