@@ -82,16 +82,12 @@ class Vimeo implements ServiceInterface
             return false;
         }
 
-        try {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, sprintf('http://vimeo.com/api/v2/video/%s.json', $video->id));
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $data = curl_exec($ch);
-            curl_close($ch);
-        } catch (\Exception $e) {
-            return false;
-        }
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, sprintf('http://vimeo.com/api/v2/video/%s.json', $video->id));
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $data = curl_exec($ch);
+        curl_close($ch);
 
         $data = json_decode($data, true);
 
