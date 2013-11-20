@@ -83,16 +83,21 @@ class Dailymotion implements ServiceInterface
         }
 
         try {
-            $data = file_get_contents(sprintf('https://api.dailymotion.com/video/%s?fields=%s', $video->id, $this->thumbnailSize));
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, sprintf('https://api.dailymotion.com/video/%s?fields=%s', $video->id, $this->thumbnailSize));
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $data = curl_exec($ch);
+            curl_close($ch);
         } catch (\Exception $e) {
             return false;
         }
 
-        if (false === $data) {
+        $data = json_decode($data, true);
+
+        if (false === $data || null === $data || isset($data['error'])) {
             return false;
         }
-
-        $data = json_decode($data, true);
 
         return $data[$this->thumbnailSize];
     }
