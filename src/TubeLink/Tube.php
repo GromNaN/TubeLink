@@ -45,10 +45,12 @@ class Tube
         $options = array_replace(array(
             'width' => 560,
             'height' => 315,
+            'frameborder' => 0,
+            'allowfullscreen' => ''
         ), $options);
 
         $html = <<<HTML
-<iframe src="$url" width="{$options['width']}" height="{$options['height']}"></iframe>
+<iframe src="$url" width="{$options['width']}" height="{$options['height']}" frameborder="{$options['frameborder']}" {$options['allowfullscreen']}></iframe>
 HTML;
         return $html;
     }
